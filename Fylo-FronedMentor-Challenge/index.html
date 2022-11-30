@@ -3,20 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento|Raleway" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="styles.css">
   <title>Fylo data storage component</title>
 </head>
 
-<body>
+<body class ="body">
+  
+  <div class="container">
+    <div class="theDiv">
+    <section class="left_floating">
+      <div class="secondDiv">
+        <img src="assets/logo.svg">
+        <div class="secondDiv-2">        
+            <img src="assets/icon-document.svg" class="icon">
+            <img src="assets/icon-folder.svg" class="icon">
+            <img src="assets/icon-upload.svg" class="icon">
+        </div>
+      </div>
+    </section>
+    <div>
 
-  You’ve used 815 GB of your storage
+    <section class="right_floating_all_inner">
+          <section class="right_floating_inner"> <span style="font-family: Raleway">185</span> GB</section>
+          <section class="arrow-down"></section>
+        <section class="right_floating">
+          <h4 style="color: white; font-family: Raleway;">You’ve used <b style="font-size: 23px;">815 GB</b> of your storage</h4>
+          <div class="progress-bar" data-label="Loading...">
+            <div class="progress-bar-inner">
+              <div  class="progress-bar-inner-circle">
+    
+              </div>
+            </div>
+          </div>
+          <h4 class="zero" style="color: white; font-family: Raleway;">0 GB</h4>
+          <h4 class="tenHundreds" style="color: white; font-family: Raleway;">1000 GB</h4>
+        </section>  
+    </section>
+  </div>
+  </div>
+  <!-- You’ve used 815 GB of your storage
 
   185 GB Left
   
   0 GB
-  1000 GB
+  1000 GB -->
   
 </body>
 </html>
