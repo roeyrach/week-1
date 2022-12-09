@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
   <link rel="stylesheet" href="styles.css">
   <title>Fylo data storage component</title>
+  <!-- <script src="javascript.js"></script> -->
 </head>
 
 <body class ="body">
@@ -16,39 +17,86 @@
     <section class="left_floating">
       <div class="secondDiv">
         <img src="assets/logo.svg">
-        <div class="secondDiv-2">        
-            <img src="assets/icon-document.svg" class="icon">
-            <img src="assets/icon-folder.svg" class="icon">
-            <img src="assets/icon-upload.svg" class="icon">
+        <div class="secondDiv-2">                    
+            <button class="btn" >
+              <img src="assets/icon-document.svg" class="icon">
+            </button>
+            <button class="btn">
+              <img src="assets/icon-folder.svg" class="icon">
+            </button>
+            <button class="btn" id="button" name="button" value="Upload">
+              <img src="assets/icon-upload.svg" class="icon">
+            </button>
+        </div>
+        <div>
+          <input type="file" id="file-input">
+          <label for="file-input">
+            <i class="glyphicon glyphicon-open"></i>
+            &nbsp;Upload Files
+          </label>
+          <br>
+          <br>
+          <span>
+            <strong style="color: white;">Chosen file: </strong>
+            <span id="file-name" style="color: white;">None</span>
+          </span>
         </div>
       </div>
     </section>
     <div>
 
     <section class="right_floating_all_inner">
-          <section class="right_floating_inner"> <span style="font-family: Raleway">185</span> GB</section>
+          <section class="right_floating_inner"> <span id="size-left"style="font-family: Raleway">0</span> GB</section>
           <section class="arrow-down"></section>
         <section class="right_floating">
-          <h4 style="color: white; font-family: Raleway;">You’ve used <b style="font-size: 23px;">815 GB</b> of your storage</h4>
-          <div class="progress-bar" data-label="Loading...">
-            <div class="progress-bar-inner">
-              <div  class="progress-bar-inner-circle">
-    
+          <h4 style="color: white; font-family: Raleway;">You’ve used <b id="used-size" style="font-size: 23px;">0 GB</b> of your storage</h4>
+          <div class="progress-bar" data-label="Loading..." >
+            <div class="progress-bar-inner" style="--width:0">
+              <div id="circle" class="progress-bar-inner-circle">  
               </div>
             </div>
           </div>
-          <h4 class="zero" style="color: white; font-family: Raleway;">0 GB</h4>
-          <h4 class="tenHundreds" style="color: white; font-family: Raleway;">1000 GB</h4>
+          <h4 id ="min-size"class="zero" style="color: white; font-family: Raleway;">0 GB</h4>
+          <h4 id="total-size" class="tenHundreds" style="color: white; font-family: Raleway;">1000 GB</h4>
         </section>  
     </section>
   </div>
   </div>
-  <!-- You’ve used 815 GB of your storage
-
-  185 GB Left
-  
-  0 GB
-  1000 GB -->
+  <script>
+      let totalSize=2;
+      let totalSizeText=document.getElementById('total-size');
+      totalSizeText.textContent=totalSize+"GB";
+      let minSize=0;
+      let minSizeText=document.getElementById('min-size');
+      minSizeText.textContent=minSize+"GB";
+      let inputFile=document.getElementById('file-input');
+      let fileNameField=document.getElementById('file-name');
+      inputFile.addEventListener('change',function(event) {
+        let uploadedFileName=event.target.files[0].name;
+        if(!(uploadedFileName.includes(".jpg")||uploadedFileName.includes(".jpeg")||uploadedFileName.includes(".gif")
+          ||uploadedFileName.includes(".png"))) {
+            fileNameField.textContent="wrong file format";
+        } else {
+          fileNameField.textContent=uploadedFileName;
+          let sizeLeft=document.getElementById('size-left');
+        let fileSize=event.target.files[0].size;
+        if (sizeLeft > totalSize){
+          sizeLeft.textContent = "File is too big"
+        }
+        sizeLeft.textContent=(totalSize-(fileSize/1028/1028)).toFixed(2)+"GB left";
+        const progressBar=document.getElementsByClassName('progress-bar-inner')[0];
+        const computedStyle=getComputedStyle(progressBar);
+        const width=parseFloat(computedStyle.getPropertyValue('--width'))||0;
+        const usedSize=fileSize/1028/totalSize;
+        let usedSizeText = document.getElementById('used-size');
+        usedSizeText.textContent = (usedSize).toFixed(3) + "GB";
+        progressBar.style.setProperty('--width',width+usedSize);
+        const circle = document.getElementById('circle');
+        circle.style.marginLeft = (usedSize.toFixed(2)/35) +"px"
+        }
+      })
+      ////////////////////////////////////////////////////////////////////////////
+  </script>
   
 </body>
 </html>

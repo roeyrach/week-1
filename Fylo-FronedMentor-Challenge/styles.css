@@ -13,7 +13,7 @@
 }
 .left_floating{
     background-color: hsl(228, 56%, 26%);
-    height: 150px;
+    height: 200px;
     width: 250px;
     padding: 1.5%;
     position: relative;
@@ -52,6 +52,10 @@
     padding: 15px;
     border-radius: 10px;
 }
+.btn{
+    background-color:  hsl(228, 56%, 26%);
+    border: none;
+}
 .progress-bar{
     width: 700px;
     height: 2em;
@@ -59,7 +63,7 @@
     border-radius: 1.5em;
 }
 .progress-bar-inner{
-    width: 500px;
+    width: calc(var(--width, 0)*1%);
     height: 1.2em;
     background-image: linear-gradient(to right,hsl(6, 100%, 80%),hsl(335, 100%, 65%));
     border-radius: 1.5em;
@@ -67,6 +71,7 @@
     right: -1%;
     top: 20%;
 }
+
 .progress-bar-inner-circle{
     width: 20px;
     height: 1.2em;
